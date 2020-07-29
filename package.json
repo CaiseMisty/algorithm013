@@ -26,9 +26,13 @@
   },
   "scripts": {
     "cm": "git-cz",
-    "test": "mocha --require intelli-espower-loader --recursive */test/*.spec.js  */test/*.test.js"
+    "test:all": "mocha -r intelli-espower-loader --recursive  */test/*.test.js",
+    "test:spec": "mocha -r intelli-espower-loader --recursive "
   },
   "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-mocha": "^7.0.1",
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^8.0.1",
     "power-assert": "^1.6.1"
