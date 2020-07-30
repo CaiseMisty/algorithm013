@@ -1,30 +1,3 @@
-// 方法一: two-sum的变形  做得不对, 超出运行时间
-/*
-const threeSum = function (nums) {
-  if (nums.length < 3) return [];
-  nums.sort((a, b) => a - b);
-  const res = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (nums.length < 2) return [];
-    const hash = new Set();
-    for (let j = 0; j < nums.length; j++) {
-      if (j === i) continue;
-      const curr = nums[j];
-      const difference = -nums[i] - curr;
-      // eslint-disable-next-line no-prototype-builtins
-      if (hash.has(difference)) {
-        const arr = [difference, curr, nums[i]].sort((a, b) => a - b);
-        if (!includeArr(res, arr)) {
-          res.push(arr);
-        }
-      }
-      hash.add(curr);
-    }
-  }
-  return res;
-};
-*/
-
 /*
   最优解: 双指针 要注意这道题的思维方式
   首先将数组排序, 使操作更便捷
@@ -73,6 +46,33 @@ const threeSum = function (nums) {
 };
 
 module.exports = threeSum;
+
+// two-sum的变形  做得不对, 超出运行时间
+/*
+const threeSum = function (nums) {
+  if (nums.length < 3) return [];
+  nums.sort((a, b) => a - b);
+  const res = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (nums.length < 2) return [];
+    const hash = new Set();
+    for (let j = 0; j < nums.length; j++) {
+      if (j === i) continue;
+      const curr = nums[j];
+      const difference = -nums[i] - curr;
+      // eslint-disable-next-line no-prototype-builtins
+      if (hash.has(difference)) {
+        const arr = [difference, curr, nums[i]].sort((a, b) => a - b);
+        if (!includeArr(res, arr)) {
+          res.push(arr);
+        }
+      }
+      hash.add(curr);
+    }
+  }
+  return res;
+};
+*/
 
 function includeArr(outerArr, sub) {
   for (let i = 0; i < outerArr.length; i++) {
