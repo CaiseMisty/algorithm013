@@ -1,7 +1,7 @@
 {
   "*.js|*.jsx": [
-    "eslint",
     "prettier --write",
+    "eslint",
     "git add ."
   ]
 }

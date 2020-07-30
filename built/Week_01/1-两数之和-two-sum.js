@@ -19,7 +19,6 @@ module.exports = function twoSum(nums, target) {
   }
   return [];
 };
-
 // 暴力遍历
 /* function twoSum(nums, target) {
   if (nums.length < 2) return [];
