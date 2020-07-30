@@ -26,15 +26,18 @@
   },
   "scripts": {
     "cm": "git-cz",
-    "test": "mocha -r intelli-espower-loader --recursive  */test/*.test.js",
-    "test:spec": "mocha -r intelli-espower-loader --recursive "
+    "test:spec": "mocha -r intelli-espower-loader --recursive ",
+    "test": "gulp && mocha -r intelli-espower-loader --recursive  dist/*/test/*.test.js"
   },
   "devDependencies": {
     "eslint": "^7.5.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-mocha": "^7.0.1",
+    "gulp": "^4.0.2",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^8.0.1",
-    "power-assert": "^1.6.1"
+    "power-assert": "^1.6.1",
+    "typescript": "^3.9.7"
   }
 }

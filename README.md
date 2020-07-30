@@ -4,7 +4,7 @@
 
 每周的目录内, `test`文件夹用于存放单元测试文件, 方便调试用.
 
-使用实际项目级别的`eslint`, `husky`, `lintstage`, `prettier`, `commitlint`对代码, 格式, 规范, 进行约束. 因此为了可读性, 不会出现所谓"过于简洁的代码".
+使用实际项目级别的`type-script`, `eslint`, `husky`, `lintstage`, `commitlint`对代码, 格式, 规范, 进行约束. 因此为了可读性, 不会出现所谓"过于简洁的代码".
 
 使用.
 

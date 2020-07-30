@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es6",
+    "outDir": "./built",
+    "allowJs": true
+  },
+  "include": ["utils/*", "Week_*/**/*"],
+  "files": ["index.js"]
+}

@@ -49,9 +49,14 @@ describe.only('15', () => {
     assert.deepEqual(func([]), []);
   });
   it('correct when input [-1, 0, 1, 2, -1, -4]，', () => {
-    assert.deepEqual(func([-1, 0, 1, 2, -1, -4]), [
-      [-1, 0, 1],
+    const res = func([-1, 0, 1, 2, -1, -4]);
+
+    assert.deepEqual(res, [
       [-1, -1, 2],
+      [-1, 0, 1],
     ]);
+  });
+  it('correct when input [1, -1, -1, 0]', () => {
+    assert.deepEqual(func([1, -1, -1, 0]), [[-1, 0, 1]]);
   });
 });

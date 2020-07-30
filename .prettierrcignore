@@ -1,2 +1,3 @@
-eslint-config/
-node_modules/
+eslint-config
+node_modules
+dist
