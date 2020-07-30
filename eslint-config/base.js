@@ -413,7 +413,7 @@ module.exports = {
      * 也不检查 rest 属性的兄弟属性
      */
     'no-unused-vars': [
-      'error',
+      'warn',
       {
         args: 'after-used',
         ignoreRestSiblings: true,

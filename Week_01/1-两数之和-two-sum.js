@@ -1,4 +1,5 @@
 /**
+ * hash缓存遍历过的值所在下标
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
@@ -16,9 +17,10 @@ module.exports = function twoSum(nums, target) {
     }
     numMap[curr] = i;
   }
-  return;
+  return [];
 };
 
+// 暴力遍历
 /* function twoSum(nums, target) {
   if (nums.length < 2) return [];
   for (let i = 0; i < nums.length - 1; i++) {

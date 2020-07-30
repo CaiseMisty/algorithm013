@@ -26,7 +26,7 @@
   },
   "scripts": {
     "cm": "git-cz",
-    "test:all": "mocha -r intelli-espower-loader --recursive  */test/*.test.js",
+    "test": "mocha -r intelli-espower-loader --recursive  */test/*.test.js",
     "test:spec": "mocha -r intelli-espower-loader --recursive "
   },
   "devDependencies": {
