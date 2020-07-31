@@ -43,7 +43,7 @@ describe('70', () => {
   });
 });
 
-describe('15', () => {
+describe.only('15', () => {
   const func = leetcode.q15;
   it('correct when input []', () => {
     assert.deepEqual(func([]), []);
@@ -54,6 +54,14 @@ describe('15', () => {
     assert.deepEqual(res, [
       [-1, -1, 2],
       [-1, 0, 1],
+    ]);
+  });
+  it('correct when input [-2,0,1,1,2]，', () => {
+    const res = func([-2, 0, 1, 1, 2]);
+
+    assert.deepEqual(res, [
+      [-2, 0, 2],
+      [-2, 1, 1],
     ]);
   });
   it('correct when input [1, -1, -1, 0]', () => {

@@ -1,17 +1,10 @@
-class ListNode<T> {
-  public val: T;
-  public next: ListNode<T>;
-  public constructor(val: T) {
-    this.val = val;
-    this.next = null;
-  }
-}
+import { ListNode } from '../utils/linked-list';
 
-function getVal<T>(node: ListNode<T>) {
+function getVal(node: ListNode) {
   return node ? node.val : 0;
 }
 
-function addTwoNumbers(l1: ListNode<number>, l2: ListNode<number>) {
+function addTwoNumbers(l1: ListNode, l2: ListNode) {
   const resHeadNode = new ListNode(0);
   let lastCarry = 0; // 上一位数的进位值
   let tailNode = resHeadNode;

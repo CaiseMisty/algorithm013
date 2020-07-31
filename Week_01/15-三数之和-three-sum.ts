@@ -1,7 +1,3 @@
-enum Direction {
-  right,
-  left,
-}
 /*
   最优解: 双指针 要注意这道题的思维方式
   首先将数组排序, 使操作更便捷
@@ -11,6 +7,10 @@ enum Direction {
   这里在移动左右位置时, 要注意移动到不重复的值
   和等于0的 纪录为一个三元组
 */
+enum Direction {
+  right,
+  left,
+}
 const threeSum = function (nums: number[]) {
   if (nums.length < 3) return [];
   nums = nums.sort((a, b) => a - b);
@@ -23,27 +23,17 @@ const threeSum = function (nums: number[]) {
     let right = nums.length - 1;
     while (left < right) {
       const sum = benchMark + nums[left] + nums[right];
-      // eslint-disable-next-line no-loop-func
-      const moveToUnique = (direction: Direction) => {
-        if (direction === Direction.right) {
-          do {
-            left += 1;
-          } while (left < right && nums[left] === nums[left - 1]);
-        }
-        if (direction === Direction.left) {
-          do {
-            right -= 1;
-          } while (left < right && nums[right] === nums[right + 1]);
-        }
-      };
+
       if (sum > 0) {
-        moveToUnique(Direction.left);
+        right -= 1;
       } else if (sum < 0) {
-        moveToUnique(Direction.right);
+        left += 1;
       } else {
         res.push([benchMark, nums[left], nums[right]]);
-        moveToUnique(Direction.left);
-        moveToUnique(Direction.right);
+        while (nums[right] === nums[right - 1]) right -= 1;
+        while (nums[left] === nums[left + 1]) left += 1;
+        left += 1;
+        right -= 1;
       }
     }
   }
