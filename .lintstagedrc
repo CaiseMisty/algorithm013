@@ -1,5 +1,5 @@
 {
-  "*.js|*.jsx": [
+  "*.js|*.jsx|*.ts": [
     "prettier --write",
     "eslint",
     "git add ."

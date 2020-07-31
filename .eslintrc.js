@@ -17,6 +17,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'arrow-body-style': ['warn', 'as-needed'],
     'arrow-parens': ['warn', 'as-needed'],
+    'no-param-reassign': 'warn',
     indent: 'off', // 以 prettier 为主
     'comma-dangle': 'off',
     strict: 'off',

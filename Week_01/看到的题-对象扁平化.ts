@@ -4,15 +4,18 @@ const tempObj: Record<string, any> = {};
 function foo(obj: Record<string, any>) {
   let str = '';
   for (const key in obj) {
-    if (typeof obj[key] !== 'object') {
-      tempObj[key] = obj[key];
-      return { key, val: obj[key] };
-    }
-    if (Array.isArray(obj[key])) {
-    } else {
-      str += `${key}.`;
-      const rec = foo(obj[key]);
-      // str += rec[key];
+    if ({}.hasOwnProperty.call(foo, key)) {
+      if (typeof obj[key] !== 'object') {
+        tempObj[key] = obj[key];
+        return { key, val: obj[key] };
+      }
+      if (Array.isArray(obj[key])) {
+        //
+      } else {
+        str += `${key}.`;
+        const rec = foo(obj[key]);
+        // str += rec[key];
+      }
     }
   }
 }

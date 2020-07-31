@@ -24,17 +24,18 @@ const threeSum = function (nums: number[]) {
     while (left < right) {
       const sum = benchMark + nums[left] + nums[right];
       // eslint-disable-next-line no-loop-func
-      function moveToUnique(direction: Direction) {
+      const moveToUnique = (direction: Direction) => {
         if (direction === Direction.right) {
           do {
             left += 1;
           } while (left < right && nums[left] === nums[left - 1]);
-        } else if (direction === Direction.left) {
+        }
+        if (direction === Direction.left) {
           do {
             right -= 1;
           } while (left < right && nums[right] === nums[right + 1]);
         }
-      }
+      };
       if (sum > 0) {
         moveToUnique(Direction.left);
       } else if (sum < 0) {
