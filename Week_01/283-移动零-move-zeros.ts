@@ -9,7 +9,7 @@
   i = 4   111001
   i = 5   111100
 */
-module.exports = function moveZeroes(nums) {
+export default function moveZeroes(nums: number[]) {
   if (nums.length < 2) return nums;
   let head = 0;
   for (let i = 0; i < nums.length; i++) {
@@ -19,7 +19,7 @@ module.exports = function moveZeroes(nums) {
     }
   }
   return nums;
-};
+}
 
 // 另一种思路, 更业务代码一些, 比较强调调换0与非零
 /*

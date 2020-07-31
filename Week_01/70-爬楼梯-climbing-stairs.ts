@@ -23,7 +23,7 @@ const memoStep = {};
   下一次的f(n-1) = 本次循环的f(n-1) + f(n-2)
   下一次的f(n-2) = 本次循环的f(n-1)
 */
-function climbStairs(n) {
+function climbStairs(n: number) {
   if (n <= 2) {
     return n;
   }
@@ -37,4 +37,4 @@ function climbStairs(n) {
   }
   return totalSteps;
 }
-module.exports = climbStairs;
+export default climbStairs;

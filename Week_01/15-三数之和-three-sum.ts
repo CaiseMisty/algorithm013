@@ -1,3 +1,7 @@
+enum Direction {
+  right,
+  left,
+}
 /*
   最优解: 双指针 要注意这道题的思维方式
   首先将数组排序, 使操作更便捷
@@ -7,7 +11,7 @@
   这里在移动左右位置时, 要注意移动到不重复的值
   和等于0的 纪录为一个三元组
 */
-const threeSum = function (nums) {
+const threeSum = function (nums: number[]) {
   if (nums.length < 3) return [];
   nums = nums.sort((a, b) => a - b);
   const res = [];
@@ -20,32 +24,32 @@ const threeSum = function (nums) {
     while (left < right) {
       const sum = benchMark + nums[left] + nums[right];
       // eslint-disable-next-line no-loop-func
-      function moveToUnique(direction) {
-        if (direction === '→') {
+      function moveToUnique(direction: Direction) {
+        if (direction === Direction.right) {
           do {
             left += 1;
           } while (left < right && nums[left] === nums[left - 1]);
-        } else if (direction === '←') {
+        } else if (direction === Direction.left) {
           do {
             right -= 1;
           } while (left < right && nums[right] === nums[right + 1]);
         }
       }
       if (sum > 0) {
-        moveToUnique('←');
+        moveToUnique(Direction.left);
       } else if (sum < 0) {
-        moveToUnique('→');
+        moveToUnique(Direction.right);
       } else {
         res.push([benchMark, nums[left], nums[right]]);
-        moveToUnique('←');
-        moveToUnique('→');
+        moveToUnique(Direction.left);
+        moveToUnique(Direction.right);
       }
     }
   }
   return res;
 };
 
-module.exports = threeSum;
+export default threeSum;
 
 // two-sum的变形  做得不对, 超出运行时间
 /*
@@ -72,7 +76,6 @@ const threeSum = function (nums) {
   }
   return res;
 };
-*/
 
 function includeArr(outerArr, sub) {
   for (let i = 0; i < outerArr.length; i++) {
@@ -89,3 +92,4 @@ function includeArr(outerArr, sub) {
   }
   return false;
 }
+*/

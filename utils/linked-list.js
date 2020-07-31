@@ -1,6 +1,6 @@
 const { LinkedList } = require('.');
 
-module.exports = class LinkedList {
+export default class LinkedList {
   constructor(arr) {
     this.head = new LinkedList.ListNode(null);
     if (Array.isArray(arr)) {
@@ -26,7 +26,7 @@ module.exports = class LinkedList {
     }
     return `[${str}]`;
   }
-};
+}
 LinkedList.ListNode = class {
   constructor(val) {
     this.val = val;

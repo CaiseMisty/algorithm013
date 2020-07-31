@@ -146,7 +146,7 @@ function moveZeroes(nums) {
 移动短边, 面积有可能会增大, 不断的移动, 则会筛选出较优的选择
 
 ```js
-module.exports = function maxArea(arr) {
+export default function maxArea(arr) {
   let area = 0;
   let left = 0;
   let right = arr.length - 1;
@@ -157,7 +157,7 @@ module.exports = function maxArea(arr) {
     else right -= 1;
   }
   return area;
-};
+}
 
 function getArea(arr, left, right) {
   return Math.min(arr[left], arr[right]) * (right - left);

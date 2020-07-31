@@ -1,8 +1,8 @@
-const assert = require('power-assert');
-const leetcode = require('../../');
+const assert = require('assert');
+import * as leetcode from '../../index';
 
-describe.skip('283', () => {
-  const func = leetcode[283];
+describe('283', () => {
+  const func = leetcode.q283;
   it('correct when []', () => {
     assert.deepEqual(func([]), []);
   });
@@ -17,8 +17,8 @@ describe.skip('283', () => {
   });
 });
 
-describe.skip('11', () => {
-  const func = leetcode[11];
+describe('11', () => {
+  const func = leetcode.q11;
   it('correct when input []', () => {
     assert(func([]) === 0);
   });
@@ -30,8 +30,8 @@ describe.skip('11', () => {
   });
 });
 
-describe.skip('70', () => {
-  const func = leetcode[70];
+describe('70', () => {
+  const func = leetcode.q70;
   it('correct when input 0', () => {
     assert(func(0) === 0);
   });
@@ -43,8 +43,8 @@ describe.skip('70', () => {
   });
 });
 
-describe.only('15', () => {
-  const func = leetcode[15];
+describe('15', () => {
+  const func = leetcode.q15;
   it('correct when input []', () => {
     assert.deepEqual(func([]), []);
   });

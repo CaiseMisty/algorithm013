@@ -10,10 +10,10 @@
 
 ```bash
 安装: npm i
-新增git commit: npm run cm
+新增git add + commit: npm run g
 
 要运行某周的测试文件, 去package.json修改 scripts: test:spec 这行后方的路径
-运行测试: npm run test:spec
+运行测试: npm test
 ```
 
 ## 仓库目录结构说明

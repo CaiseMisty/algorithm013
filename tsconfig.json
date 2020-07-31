@@ -2,9 +2,9 @@
   "compilerOptions": {
     "noImplicitAny": true,
     "target": "es6",
-    "outDir": "./built",
+    "outDir": "./dist",
     "allowJs": true
   },
   "include": ["utils/*", "Week_*/**/*"],
-  "files": ["index.js"]
+  "files": ["index.ts"]
 }

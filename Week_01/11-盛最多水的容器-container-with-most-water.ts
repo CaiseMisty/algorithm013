@@ -3,7 +3,7 @@
  * 因为移动哨兵势必导致宽度变小, 如果移动较长边, 长边无论是变长还是变短, 面积都一定会缩小, 所以排除移动长边
  * 移动短边, 面积有可能会增大, 不断的移动, 则会筛选出较优的选择
  */
-module.exports = function maxArea(arr) {
+export default function maxArea(arr: number[]) {
   let area = 0;
   let left = 0;
   let right = arr.length - 1;
@@ -14,8 +14,8 @@ module.exports = function maxArea(arr) {
     else right -= 1;
   }
   return area;
-};
+}
 
-function getArea(arr, left, right) {
+function getArea(arr: number[], left: number, right: number) {
   return Math.min(arr[left], arr[right]) * (right - left);
 }

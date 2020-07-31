@@ -1,10 +1,7 @@
 /**
  * hash缓存遍历过的值所在下标
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
  */
-module.exports = function twoSum(nums: number[], target: number) {
+export default function twoSum(nums: number[], target: number) {
   if (nums.length < 2) return [];
   const numMap: { [propName: number]: number } = {};
   for (let i = 0; i < nums.length; i++) {
@@ -18,7 +15,7 @@ module.exports = function twoSum(nums: number[], target: number) {
     numMap[curr] = i;
   }
   return [];
-};
+}
 
 // 暴力遍历
 /* function twoSum(nums, target) {
