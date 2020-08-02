@@ -26,7 +26,7 @@
     "test": "*/test/"
   },
   "scripts": {
-    "g": "git add . && git-cz",
+    "g": "git add . && git-cz && git push",
     "test:spec": "mocha -r intelli-espower-loader --recursive ",
     "build": "gulp",
     "test": "mocha  --require espower-typescript/guess  --recursive  */test/*.test.ts"
