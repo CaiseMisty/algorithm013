@@ -29,7 +29,7 @@
     "g": "git add . && git-cz",
     "test:spec": "mocha -r intelli-espower-loader --recursive ",
     "build": "gulp",
-    "test": "mocha --require ts-node/register -r intelli-espower-loader  --recursive  */test/*.test.ts"
+    "test": "mocha  --require espower-typescript/guess  --recursive  */test/*.test.ts"
   },
   "devDependencies": {
     "@types/assert": "^1.5.1",

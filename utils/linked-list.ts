@@ -20,7 +20,7 @@ export class LinkedList {
         node.val = arr[i];
         node.next = new ListNode();
         node = node.next;
-        i += 1;
+        i++;
       }
       node.val = arr[i];
       node.next = null;

@@ -25,15 +25,15 @@ const threeSum = function (nums: number[]) {
       const sum = benchMark + nums[left] + nums[right];
 
       if (sum > 0) {
-        right -= 1;
+        right--;
       } else if (sum < 0) {
-        left += 1;
+        left++;
       } else {
         res.push([benchMark, nums[left], nums[right]]);
-        while (nums[right] === nums[right - 1]) right -= 1;
-        while (nums[left] === nums[left + 1]) left += 1;
-        left += 1;
-        right -= 1;
+        while (nums[right] === nums[right - 1]) right--;
+        while (nums[left] === nums[left + 1]) left++;
+        left++;
+        right--;
       }
     }
   }

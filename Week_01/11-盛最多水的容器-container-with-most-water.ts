@@ -10,8 +10,8 @@ export default function maxArea(arr: number[]) {
 
   while (left < right) {
     area = Math.max(getArea(arr, left, right), area);
-    if (arr[left] < arr[right]) left += 1;
-    else right -= 1;
+    if (arr[left] < arr[right]) left++;
+    else right--;
   }
   return area;
 }

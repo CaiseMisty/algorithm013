@@ -109,7 +109,7 @@ function moveZeroes(nums) {
       nums[i] = 0;
     }
     if (nums[zeroIdx] !== 0) {
-      zeroIdx += 1;
+      zeroIdx++;
     }
   }
   return nums;
@@ -129,7 +129,7 @@ function moveZeroes(nums) {
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] !== 0) {
       [nums[head], nums[i]] = [nums[i], nums[head]];
-      head += 1;
+      head++;
     }
   }
   return nums;
@@ -153,8 +153,8 @@ export default function maxArea(arr) {
 
   while (left < right) {
     area = Math.max(getArea(arr, left, right), area);
-    if (arr[left] < arr[right]) left += 1;
-    else right -= 1;
+    if (arr[left] < arr[right]) left++;
+    else right--;
   }
   return area;
 }

@@ -15,7 +15,7 @@ export default function moveZeroes(nums: number[]) {
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] !== 0) {
       [nums[head], nums[i]] = [nums[i], nums[head]];
-      head += 1;
+      head++;
     }
   }
   return nums;
@@ -32,7 +32,7 @@ function moveZeroes(nums) {
       nums[i] = 0;
     }
     if (nums[zeroIdx] !== 0) {
-      zeroIdx += 1;
+      zeroIdx++;
     }
   }
   return nums;

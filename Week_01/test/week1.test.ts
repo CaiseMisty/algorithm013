@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require('power-assert');
 import * as leetcode from '../../index';
 
 describe('283', () => {
@@ -43,7 +43,7 @@ describe('70', () => {
   });
 });
 
-describe.only('15', () => {
+describe('15', () => {
   const func = leetcode.q15;
   it('correct when input []', () => {
     assert.deepEqual(func([]), []);
@@ -66,5 +66,15 @@ describe.only('15', () => {
   });
   it('correct when input [1, -1, -1, 0]', () => {
     assert.deepEqual(func([1, -1, -1, 0]), [[-1, 0, 1]]);
+  });
+});
+
+describe.only('189', () => {
+  const func = leetcode.q189;
+  it('correct when input [1,2], 2', () => {
+    const arr = [1, 2];
+    func(arr, 2);
+    assert.deepEqual(arr, [1, 2]);
+    // assert(arr.length === 1)
   });
 });
