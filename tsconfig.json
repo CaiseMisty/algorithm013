@@ -3,7 +3,13 @@
     "noImplicitAny": true,
     "target": "es6",
     "outDir": "./dist",
-    "allowJs": true
+    "allowJs": true,
+    "baseUrl": ".",
+    "strict": true,
+    "paths": {
+      "$utils/*": ["utils/*"]
+    },
+    "module": "esnext"
   },
   "include": ["utils/*", "Week_*/**/*"],
   "files": ["index.ts"]
