@@ -4,9 +4,8 @@ import { TreeNode } from '$utils/index';
 // 2.栈顶节点的右节点为空或右节点被访问过 -> 节点出栈并访问他，将节点标记为已访问
 // 3.栈顶节点的右节点不为空且未被访问，以右孩子为目标节点，再依次执行1、2、3
 function postorderTraversal(root: TreeNode | null): number[] {
-  // TODO: 明天学 现在不会
   if (!root) return [];
-  const res = [];
+  const result = [];
   const stack: TreeNode[] = [];
   let curr: any = root;
   let last = null;
@@ -18,14 +17,14 @@ function postorderTraversal(root: TreeNode | null): number[] {
     curr = stack[stack.length - 1];
     if (!curr.right || curr.right === last) {
       curr = stack.pop();
-      res.push(curr.val);
+      result.push(curr.val);
       last = curr;
       curr = null; // 继续弹栈
     } else {
       curr = curr.right;
     }
   }
-  return res;
+  return result;
 }
 
 export default postorderTraversal;
