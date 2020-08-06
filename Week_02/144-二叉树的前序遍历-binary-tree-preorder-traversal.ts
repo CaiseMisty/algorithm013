@@ -12,8 +12,25 @@ function preorderTraversal(root: TreeNode | null): number[] {
 */
 
 /**
- *  栈迭代的做法
+ * 另一种迭代的写法, 比较好理解
  */
+const preorderTraversal = function (root: any) {
+  if (!root) return [];
+  const res = [];
+  const stack = [root];
+  while (stack.length) {
+    const curr = stack.shift();
+    res.push(curr.val);
+    if (curr.right) stack.unshift(curr.right);
+    if (curr.left) stack.unshift(curr.left);
+  }
+  return res;
+};
+
+/**
+ *  栈迭代的做法, 比较偏重于手动判断
+ */
+/*
 function preorderTraversal(root: TreeNode | null): number[] {
   const res = [];
   const stack: TreeNode[] = [];
@@ -30,6 +47,7 @@ function preorderTraversal(root: TreeNode | null): number[] {
   }
   return res;
 }
+*/
 
 /**
  * 常规递归做法 很简单
