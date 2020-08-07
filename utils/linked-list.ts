@@ -28,7 +28,7 @@ export class LinkedList {
   }
   public toString() {
     let str = '';
-    let node = this.head;
+    let node: ListNode | null = this.head;
     while (node) {
       str += `${node.val}`;
       if (node.next) str += ',';
