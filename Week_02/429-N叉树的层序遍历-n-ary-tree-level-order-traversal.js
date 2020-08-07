@@ -1,5 +1,6 @@
-// 暴力解法  没什么章法
+// 没看答案用的暴力解法  类似于BFS
 // 看答案应该是用BFS DFS来做
+/*
 function levelOrder(root) {
   if (!root) return [];
   const res = [[root.val]];
@@ -30,4 +31,40 @@ function levelOrder(root) {
   }
   return res;
 }
+*/
+
+/**
+ * DFS
+ */
+/*
+function levelOrder(root) {
+  const res = [];
+  if (!root) return res;
+  const queue = [root];
+  while (queue.length) {
+    const childrenCount = queue.length;
+    const level = [];
+    for (let i = 0; i < childrenCount; i++) {
+      const node = queue.shift();
+      level.push(node.val);
+      if (node?.children?.length) queue.push(...node.children);
+    }
+    res.push(level);
+  }
+  return res;
+}
+*/
+function levelOrder(root) {
+  const res = [];
+  function traverseNode(node, level) {
+    if (res.length < level + 1) res.push([]);
+    res[level].push(node.val);
+    for (const child of node.children) {
+      traverseNode(child, level + 1);
+    }
+  }
+  if (root) traverseNode(root, 0);
+  return res;
+}
+
 export default levelOrder;
