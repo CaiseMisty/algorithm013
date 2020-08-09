@@ -32,6 +32,11 @@ HashMap 的 put 和 get, 总结.
 斐波那契堆:  find-max(min): O(1)     delete-max(min): O(logn)      insert(create): O(logn) or O(1)
 
 ###  TypeScript 实现一个二叉堆
+
+初始化时可选为小顶堆 / 大顶堆, 默认为大顶.
+
+可传入自定义比较函数.
+
 ```ts
 type heapType = 'big' | 'small';
 export class Heap<T> {
