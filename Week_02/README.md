@@ -1,4 +1,4 @@
-# Week_02 学习笔记 (哈希表)
+# Week_02 学习笔记 (哈希表  树  堆)
 
 ## 哈希表
 
@@ -31,7 +31,7 @@ HashMap 的 put 和 get, 总结.
 
 斐波那契堆:  find-max(min): O(1)     delete-max(min): O(logn)      insert(create): O(logn) or O(1)
 
-###  TypeScript实现一个二叉堆
+###  TypeScript 实现一个二叉堆
 ```ts
 type heapType = 'big' | 'small';
 class Heap {
@@ -88,8 +88,8 @@ class Heap {
   /**
    * 获取根元素的值
    */
-  public peek(i: number) {
-    return this.heap[0];
+  public peek(i = 0) {
+    return this.heap[i];
   }
 
   public findMax(): number | undefined {
@@ -119,7 +119,7 @@ class Heap {
     let maxChildIdx: number;
     let target = this.heap[i];
     while (Heap.kthChild(i, 1) < this.heapSize) {
-      maxChildIdx = this.maxChild(i);
+      maxChildIdx = this.chooseChild(i);
       if (this.heapifyDownJudge(target, this.heap[maxChildIdx])) {
         break;
       }
@@ -129,11 +129,15 @@ class Heap {
     this.heap[i] = target;
   }
 
-  private maxChild(i: number) {
+  private chooseChild(i: number) {
     const leftChild = Heap.kthChild(i, 1);
     const rightChild = Heap.kthChild(i, 2);
     if (rightChild + 1 > this.heapSize) return leftChild;
-    return this.heap[leftChild] > this.heap[rightChild] ? leftChild : rightChild;
+    if (this.type === 'big') {
+      return this.heap[leftChild] > this.heap[rightChild] ? leftChild : rightChild;
+    } else {
+      return this.heap[leftChild] < this.heap[rightChild] ? leftChild : rightChild;
+    }
   }
   private heapifyUpJudge(target: number, parentVal: number) {
     return this.type === 'big' ? target > parentVal : target < parentVal;
@@ -141,5 +145,6 @@ class Heap {
   private heapifyDownJudge(target: number, maxChildVal: number) {
     return this.type === 'big' ? target >= maxChildVal : target <= maxChildVal;
   }
-}  
+}
+
 ```

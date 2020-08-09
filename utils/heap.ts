@@ -1,5 +1,5 @@
 type heapType = 'big' | 'small';
-class Heap {
+export class Heap {
   private static d = 2;
   private static parent(i: number) {
     return Math.floor((i - 1) / Heap.d);
@@ -53,8 +53,8 @@ class Heap {
   /**
    * 获取根元素的值
    */
-  public peek(i: number) {
-    return this.heap[0];
+  public peek(i = 0) {
+    return this.heap[i];
   }
 
   public findMax(): number | undefined {
@@ -84,7 +84,7 @@ class Heap {
     let maxChildIdx: number;
     let target = this.heap[i];
     while (Heap.kthChild(i, 1) < this.heapSize) {
-      maxChildIdx = this.maxChild(i);
+      maxChildIdx = this.chooseChild(i);
       if (this.heapifyDownJudge(target, this.heap[maxChildIdx])) {
         break;
       }
@@ -94,11 +94,15 @@ class Heap {
     this.heap[i] = target;
   }
 
-  private maxChild(i: number) {
+  private chooseChild(i: number) {
     const leftChild = Heap.kthChild(i, 1);
     const rightChild = Heap.kthChild(i, 2);
     if (rightChild + 1 > this.heapSize) return leftChild;
-    return this.heap[leftChild] > this.heap[rightChild] ? leftChild : rightChild;
+    if (this.type === 'big') {
+      return this.heap[leftChild] > this.heap[rightChild] ? leftChild : rightChild;
+    } else {
+      return this.heap[leftChild] < this.heap[rightChild] ? leftChild : rightChild;
+    }
   }
   private heapifyUpJudge(target: number, parentVal: number) {
     return this.type === 'big' ? target > parentVal : target < parentVal;
