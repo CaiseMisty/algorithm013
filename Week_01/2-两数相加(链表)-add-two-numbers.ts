@@ -1,10 +1,10 @@
 import { ListNode } from '../utils/linked-list';
 
-function getVal(node: ListNode) {
+function getVal(node: ListNode | null) {
   return node ? node.val : 0;
 }
 
-function addTwoNumbers(l1: ListNode, l2: ListNode) {
+function addTwoNumbers(l1: ListNode | null, l2: ListNode | null) {
   const resHeadNode = new ListNode(0);
   let lastCarry = 0; // 上一位数的进位值
   let tailNode = resHeadNode;
