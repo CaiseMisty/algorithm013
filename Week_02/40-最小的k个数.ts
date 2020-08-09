@@ -1,5 +1,5 @@
 import { Heap } from '$utils/index';
-// 使用大顶堆
+// 使用大顶堆, 引入的是我用 ts 实现的 Heap
 function getLeastNumbers(arr: number[], k: number): number[] {
   if (!k) return [];
   const heap = new Heap<number>('big');
