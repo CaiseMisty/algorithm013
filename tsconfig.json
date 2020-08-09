@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "target": "es6",
+    "target": "ESNext",
     "outDir": "./dist",
     "allowJs": true,
     "baseUrl": ".",
@@ -9,7 +9,8 @@
     "paths": {
       "$utils/*": ["utils/*"]
     },
-    "module": "esnext"
+    "module": "ESNext",
+    "sourceMap": true
   },
   "include": ["utils/*", "Week_*/**/*"],
   "files": ["index.ts"]

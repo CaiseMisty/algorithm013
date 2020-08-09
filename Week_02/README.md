@@ -34,7 +34,7 @@ HashMap 的 put 和 get, 总结.
 ###  TypeScript 实现一个二叉堆
 ```ts
 type heapType = 'big' | 'small';
-class Heap {
+export class Heap<T> {
   private static d = 2;
   private static parent(i: number) {
     return Math.floor((i - 1) / Heap.d);
@@ -44,14 +44,16 @@ class Heap {
     return Heap.d * i + nth;
   }
 
-  private heap: number[];
+  private heap: T[];
   private heapSize: number;
   private type: heapType;
+  // private compare: (a: T, b: T) => boolean;
 
-  public constructor(type: heapType = 'big') {
+  public constructor(type: heapType = 'big', compare?: (a: T, b: T) => boolean) {
     this.heapSize = 0;
     this.heap = [];
     this.type = type;
+    if (compare) this.compare = compare;
   }
 
   public isEmpty(): boolean {
@@ -61,14 +63,14 @@ class Heap {
   /**
    * 添加元素
    */
-  public add(i: number | number[]) {
-    if (typeof i === 'number') {
-      this.heap[this.heapSize++] = i;
-      this.heapifyUp(this.heapSize - 1);
-    } else {
-      for (let num of i as number[]) {
+  public add(i: T | T[]) {
+    if (Array.isArray(i)) {
+      for (let num of i as T[]) {
         this.add(num);
       }
+    } else {
+      this.heap[this.heapSize++] = i;
+      this.heapifyUp(this.heapSize - 1);
     }
   }
 
@@ -92,7 +94,11 @@ class Heap {
     return this.heap[i];
   }
 
-  public findMax(): number | undefined {
+  public size() {
+    return this.heapSize;
+  }
+
+  public findMax(): T | undefined {
     if (this.isEmpty()) return;
     return this.heap[0];
   }
@@ -101,14 +107,14 @@ class Heap {
     return this.heap.toString();
   }
 
-  public toArray(): number[] {
+  public toArray(): T[] {
     return this.heap;
   }
 
   // 插入元素, 最坏复杂度O(log N)
   private heapifyUp(i: number) {
     const insertValue = this.heap[i];
-    while (i > 0 && this.heapifyUpJudge(insertValue, this.heap[Heap.parent(i)])) {
+    while (i > 0 && this.compareByType(insertValue, this.heap[Heap.parent(i)])) {
       this.heap[i] = this.heap[Heap.parent(i)];
       i = Heap.parent(i);
     }
@@ -120,7 +126,7 @@ class Heap {
     let target = this.heap[i];
     while (Heap.kthChild(i, 1) < this.heapSize) {
       maxChildIdx = this.chooseChild(i);
-      if (this.heapifyDownJudge(target, this.heap[maxChildIdx])) {
+      if (this.compareByType(target, this.heap[maxChildIdx])) {
         break;
       }
       this.heap[i] = this.heap[maxChildIdx];
@@ -133,18 +139,13 @@ class Heap {
     const leftChild = Heap.kthChild(i, 1);
     const rightChild = Heap.kthChild(i, 2);
     if (rightChild + 1 > this.heapSize) return leftChild;
-    if (this.type === 'big') {
-      return this.heap[leftChild] > this.heap[rightChild] ? leftChild : rightChild;
-    } else {
-      return this.heap[leftChild] < this.heap[rightChild] ? leftChild : rightChild;
-    }
+    return this.compareByType(this.heap[leftChild], this.heap[rightChild]) ? leftChild : rightChild; // this.heap[leftChild] > this.heap[rightChild]
   }
-  private heapifyUpJudge(target: number, parentVal: number) {
-    return this.type === 'big' ? target > parentVal : target < parentVal;
+  private compare(a: T, b: T) {
+    return a > b;
   }
-  private heapifyDownJudge(target: number, maxChildVal: number) {
-    return this.type === 'big' ? target >= maxChildVal : target <= maxChildVal;
+  private compareByType(a: T, b: T) {
+    return this.type === 'big' ? this.compare(a, b) : !this.compare(a, b);
   }
 }
-
 ```
