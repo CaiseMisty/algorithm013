@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Week_02 学习笔记 (哈希表  树  堆)
+=======
+# Week_02 学习笔记 (哈希表 树 堆)
+>>>>>>> 2b2ee4f78903e460e9d2172bfca0907fd63f92f2
 
 ## 哈希表
 
@@ -26,6 +30,7 @@ HashMap 的 put 和 get, 总结.
 - 根节点最大的为大顶堆
 - 根节点最小的为小顶堆
 
+<<<<<<< HEAD
 ### Heap实现方式
 二叉堆(比较简单, 时间复杂度不如其余的)
 
@@ -39,6 +44,25 @@ HashMap 的 put 和 get, 总结.
 
 ```ts
 type heapType = 'big' | 'small';
+=======
+### Heap 实现方式
+
+二叉堆(比较简单, 时间复杂度不如其余的)
+
+斐波那契堆: find-max(min): O(1) delete-max(min): O(logn) insert(create): O(logn) or O(1)
+
+### TypeScript 实现一个二叉堆
+
+初始化时可选为小顶堆 / 大顶堆, 默认为大顶. 类型不限制为 int.
+
+可传入自定义比较函数.
+
+文件位于`根目录/utils/`中, 用这个堆完成的 40, 347 题.
+
+```ts
+type heapType = 'big' | 'small';
+
+>>>>>>> 2b2ee4f78903e460e9d2172bfca0907fd63f92f2
 export class Heap<T> {
   private static d = 2;
   private static parent(i: number) {
@@ -153,4 +177,8 @@ export class Heap<T> {
     return this.type === 'big' ? this.compare(a, b) : !this.compare(a, b);
   }
 }
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 2b2ee4f78903e460e9d2172bfca0907fd63f92f2
