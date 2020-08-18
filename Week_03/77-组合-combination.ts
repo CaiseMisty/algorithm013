@@ -1,21 +1,18 @@
 function combine(n: number, k: number): number[][] {
-  let res: number[][] = [];
-  let could: number[] = [];
-  if (k === 0) {
-    return [[]];
-  }
-  function dfs(start: number, n: number, k: number) {
-    if (could.length === k) {
-      res.push(could.slice(0));
+  const res: number[][] = [];
+  if (!n && !k) return res;
+  let tempList: number[] = [];
+  function add(currN: number) {
+    if (tempList.length === k) {
+      res.push([...tempList]);
       return;
     }
-    for (let i = start; i < n + 1; i++) {
-      could.push(i);
-      dfs(i + 1, n, k);
-      could.pop();
+    for (let i = currN; i <= n; i++) {
+      tempList.push(i);
+      add(i + 1);
+      tempList.pop();
     }
-    return res;
   }
-  dfs(1, n, k);
+  add(1);
   return res;
 }
