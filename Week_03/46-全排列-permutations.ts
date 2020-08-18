@@ -1,15 +1,22 @@
 // 套回溯模板
 function permute(nums: number[]): number[][] {
-  const list: number[][] = [];
-  function backtrack(tempList: number[], nums: number[]) {
-    if (tempList.length === nums.length) return list.push([...tempList]);
-    for (let i = 0; i < nums.length; i++) {
-      if (tempList.includes(nums[i])) continue;
-      tempList.push(nums[i]);
-      backtrack(tempList, nums);
-      tempList.pop();
+  const res: number[][] = [];
+  if (!nums || !nums.length) return [[]];
+  const memo: Set<number> = new Set();
+  function rec(list: number[]) {
+    if (list.length === nums.length) {
+      res.push([...list]);
+      return;
+    }
+    for (const curr of nums) {
+      if (memo.has(curr)) continue;
+      list.push(curr);
+      memo.add(curr);
+      rec(list);
+      const del = list.pop() as number;
+      memo.delete(del);
     }
   }
-  backtrack([], nums);
-  return list;
+  rec([]);
+  return res;
 }
