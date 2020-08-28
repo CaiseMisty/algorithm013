@@ -1,14 +1,17 @@
-function findContentChildren(grid: number[], size: number[]): number {
-  if (grid === null || size === null) return 0;
-  grid.sort((a, b) => a - b);
-  size.sort((a, b) => a - b);
-  let gi = 0;
-  let si = 0;
-  while (gi < grid.length && si < size.length) {
-    if (grid[gi] <= size[si]) {
-      gi++;
+function findContentChildren(g: number[], s: number[]): number {
+  g.sort((a, b) => a - b);
+  s.sort((a, b) => a - b);
+  let res = 0;
+  let i = 0;
+  let j = 0;
+  while (i < g.length && j < s.length) {
+    if (g[i] <= s[j]) {
+      res++;
+      i++;
+      j++;
+    } else {
+      j++;
     }
-    si++;
   }
-  return gi;
+  return res;
 }
