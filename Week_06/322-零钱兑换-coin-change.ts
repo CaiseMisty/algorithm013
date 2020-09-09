@@ -9,21 +9,22 @@ const coinChange = [
 
   function coinChange(coins: number[], amount: number): number {
     if (amount < 1) return 0;
-    const memo: any = { 0: 0 };
-    function recursive(amount: number): number {
-      if (amount < 0) return Infinity;
-      if (memo[amount - 1] !== Infinity) return memo[amount];
+    const memo: any = {};
+    function recursive(n: number): number {
+      if (n === 0) return 0;
+      if (n < 0) return -1;
+      if (memo[n]) return memo[n];
       let min = Infinity;
       for (const coin of coins) {
-        const res = recursive(amount - coin);
-        if (res < min && res !== Infinity) {
+        const res = recursive(n - coin);
+        if (res < min && res !== -1) {
           min = res;
         }
       }
-      memo[amount] = min + 1;
-      return min;
+      memo[n] = min !== Infinity ? min : -1;
+      return memo[n];
     }
-    return recursive(amount) === Infinity ? -1 : memo[amount];
+    return recursive(amount);
   },
 ];
 
