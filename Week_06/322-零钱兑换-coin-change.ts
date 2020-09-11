@@ -10,21 +10,21 @@ const coinChange = [
   function coinChange(coins: number[], amount: number): number {
     if (amount < 1) return 0;
     const memo: any = {};
-    function recursive(n: number): number {
-      if (n === 0) return 0;
+    function helper(n: number): number {
       if (n < 0) return -1;
+      if (n === 0) return 0;
       if (memo[n]) return memo[n];
       let min = Infinity;
       for (const coin of coins) {
-        const res = recursive(n - coin);
-        if (res < min && res !== -1) {
-          min = res;
+        const subProblem = helper(n - coin);
+        if (subProblem !== -1) {
+          min = Math.min(min, subProblem + 1);
         }
       }
-      memo[n] = min !== Infinity ? min : -1;
+      memo[n] = min === Infinity ? -1 : min;
       return memo[n];
     }
-    return recursive(amount);
+    return helper(amount);
   },
 ];
 
