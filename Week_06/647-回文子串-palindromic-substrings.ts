@@ -1,34 +1,22 @@
 export default [
   /**
    * n^2 时间复杂度
+   * dp[i][j] 表达 s.substring(i, j+1)这个字符串是否为回文串
+   * dp[i][j] = dp[i-1][j+1] (当s[i]==s[j]且i-j>1时)
    */
   function countSubstrings(s: string): number {
-    let count = 0;
     const len = s.length;
-
-    const dp = new Array(len);
+    const dp: boolean[][] = Array.from({ length: len }, () => Array(len).fill(false));
+    let res = 0;
     for (let i = 0; i < len; i++) {
-      dp[i] = new Array(len).fill(false);
-    }
-
-    for (let j = 0; j < len; j++) {
-      for (let i = 0; i <= j; i++) {
-        if (i === j) {
-          // 单个字符
+      for (let j = 0; j <= i; j++) {
+        if (s[i] === s[j] && (i === j || i === j + 1 || dp[i - 1][j + 1])) {
           dp[i][j] = true;
-          count++;
-        } else if (j - i === 1 && s[i] === s[j]) {
-          // 两个字符
-          dp[i][j] = true;
-          count++;
-        } else if (j - i > 1 && s[i] === s[j] && dp[i + 1][j - 1]) {
-          // 多于两个字符
-          dp[i][j] = true;
-          count++;
+          res++;
         }
       }
     }
-    return count;
+    return res;
   },
   /**
    * 降维
