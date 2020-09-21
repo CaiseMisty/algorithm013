@@ -31,7 +31,6 @@ function merge(nums: number[], start: number, mid: number, end: number) {
 const arr = [85, 1, 3, 8, 13, 0, 85, 63, 7254, 412];
 mergeSort(arr);
 console.log(arr);
-
 ```
 
 ### 快排
