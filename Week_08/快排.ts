@@ -1,20 +1,20 @@
 function sort(nums: number[], start = 0, end = nums.length - 1) {
   if (start >= end) return;
-  function partition(start: number, end: number) {
-    let povit = start;
-    for (let i = 0; i < end; i++) {
+  function partition(start: number, end: number): number {
+    let pivot = start;
+    for (let i = start; i < end; i++) {
       if (nums[i] < nums[end]) {
-        [nums[povit], nums[i]] = [nums[i], nums[povit]];
-        povit++;
+        [nums[i], nums[pivot]] = [nums[pivot], nums[i]];
+        pivot++;
       }
     }
-    [nums[povit], nums[end]] = [nums[end], nums[povit]];
-    return povit;
+    [nums[pivot], nums[end]] = [nums[end], nums[pivot]];
+    return pivot;
   }
-  const povit = partition(start, end);
-  sort(nums, 0, povit - 1);
-  sort(nums, povit + 1, end);
+  const pivot = partition(start, end);
+  sort(nums, start, pivot - 1);
+  sort(nums, pivot + 1, end);
 }
-const nums = [3, 4, 5, 2, 1];
-sort(nums);
-console.log(nums);
+const arr = [85, 1, 3, 8, 13, 0, 85, 63, 7254, 412];
+sort(arr);
+console.log(arr);

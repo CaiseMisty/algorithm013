@@ -4,45 +4,39 @@
 
 ### 归并排序
 
-```js
-//归并排序
-function mergeSort(arr) {
-  let len = arr.length;
-  if (len < 2) {
-    return arr;
-  }
-  //首先将无序数组划分为两个数组
-  let mid = Math.floor(len / 2);
-  let left = arr.slice(0, mid);
-  let right = arr.slice(mid, len);
-  return merge(mergeSort(left), mergeSort(right)); //递归分别对左右两部分数组进行排序合并
+要点:
+
+- `mergeSort`函数的格式死记硬背即可, 此函数递归到最后, 左半部分和右半部分会分隔为[0, 0][1, 1]这样的区间(只包含两个元素)
+- `merge`会将两个数组都从头开始遍历, 将两数组之间最小的元素依次放进新数组中. 由于一开始构建的部分只包含两个元素, 所以可以保证`merge`后的数组是有序的, 因此接下来在递归到上层`merge`时可以确保当前的两段区间皆为有序.
+- 对两个有序数组合并的小技巧: 见下方代码注释
+
+```ts
+function mergeSort(nums: number[], start = 0, end = nums.length - 1) {
+  if (start >= end) return;
+  const mid = ((end - start) >> 1) + start;
+  mergeSort(nums, start, mid);
+  mergeSort(nums, mid + 1, end);
+  merge(nums, start, mid, end);
 }
-//合并
-function merge(left, right) {
-  let result = [];
-  while (left.length > 0 && right.length > 0) {
-    if (left[0] <= right[0]) {
-      //如果左边的数据小于右边的数据，将左边数据取出，放在新数组中
-      result.push(left.shift());
-    } else {
-      result.push(right.shift());
-    }
-  }
-  while (left.length) {
-    result.push(left.shift());
-  }
-  while (right.length) {
-    result.push(right.shift());
-  }
-  return result;
+function merge(nums: number[], start: number, mid: number, end: number) {
+  const arr = [];
+  let i = start; // 保证左边区间为 [start, mid]  右边区间为 [mid + 1, end]
+  let j = mid + 1;
+  while (i <= mid && j <= end) arr.push(nums[i] < nums[j] ? nums[i++] : nums[j++]); // 循环结束时, 左右区间中有一个已经全部归位完毕
+  while (i <= mid) arr.push(nums[i++]);
+  while (j <= end) arr.push(nums[j++]); // 这两行将还剩元素的那个区间, 剩余元素全部依次放入arr后
+  nums.splice(start, end - start + 1, ...arr); // 替换原数组中[start, end]区间的值为合并完有序后的值. 注意 Array.splice 第二个参数为要删除多少个值, 不是要删除到哪个下标之前
 }
-let arr = [3, 44, 38, 5, 47, 15, 36, 26];
+
+const arr = [85, 1, 3, 8, 13, 0, 85, 63, 7254, 412];
 mergeSort(arr);
+console.log(arr);
+
 ```
 
 ### 快排
 
-要记住的几个特殊点:
+要点:
 
 - 调用 `partition` 函数来对 `start`~`end` 这个区间的数组进行整理, 最后返回`povit`
 - 下方递归调用 sort
@@ -52,20 +46,20 @@ mergeSort(arr);
 ```ts
 function sort(nums: number[], start = 0, end = nums.length - 1) {
   if (start >= end) return;
-  function partition(start: number, end: number) {
-    let povit = start;
-    for (let i = 0; i < end; i++) {
+  function partition(start: number, end: number): number {
+    let pivot = start;
+    for (let i = start; i < end; i++) {
       if (nums[i] < nums[end]) {
-        [nums[povit], nums[i]] = [nums[i], nums[povit]];
-        povit++;
+        [nums[i], nums[pivot]] = [nums[pivot], nums[i]];
+        pivot++;
       }
     }
-    [nums[povit], nums[end]] = [nums[end], nums[povit]];
-    return povit;
+    [nums[pivot], nums[end]] = [nums[end], nums[pivot]];
+    return pivot;
   }
-  const povit = partition(start, end);
-  sort(nums, 0, povit - 1);
-  sort(nums, povit + 1, end);
+  const pivot = partition(start, end);
+  sort(nums, start, pivot - 1);
+  sort(nums, pivot + 1, end);
 }
 const nums = [3, 4, 5, 2, 1];
 sort(nums);
