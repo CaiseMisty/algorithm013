@@ -22,9 +22,7 @@ function myAtoi(s: string): number {
     } else {
       break;
     }
-    res = sign === 1 ? Math.min(res, 2 ** 31 - 1) : Math.max(res, (-2) ** 31);
+    res = sign === 1 ? Math.min(res, 2 ** 31 - 1) : Math.min(res, 2 ** 31);
   }
   return sign * res;
 }
-
-myAtoi('-91283472332');
