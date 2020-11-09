@@ -1,4 +1,4 @@
-import { TreeNode } from '$utils/index';
+import { TreeNode } from '$utils';
 const maxDepth = [
   function maxDepth(root: TreeNode | null): number {
     let depth = 0;
