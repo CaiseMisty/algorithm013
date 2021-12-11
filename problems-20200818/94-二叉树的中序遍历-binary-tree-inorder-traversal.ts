@@ -1,4 +1,4 @@
-import { TreeNode } from '$utils/index';
+import { TreeNode } from '$utils';
 
 const inorderTraversal = [
   // 最简洁的递归
