@@ -40,3 +40,17 @@ const climbStairs = [
   },
 ];
 export default climbStairs[1];
+
+/**
+ * 递归 + 缓存  时间O(n)  空间O(n)
+ */
+const memo = new Map<number, number>([
+  [1, 1],
+  [2, 2],
+]);
+function climbStairs3(n: number): number {
+  if (memo.has(n)) return memo.get(n) as number;
+  const res = climbStairs3(n - 1) + climbStairs3(n - 2);
+  memo.set(n, res);
+  return res;
+}
